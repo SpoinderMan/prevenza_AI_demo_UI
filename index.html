@@ -1,0 +1,1960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prevenza AI — Pre-Delinquency Intelligence Platform</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- SVG ICON LIBRARY (inline sprites) -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <symbol id="ic-credit-card" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/>
+  </symbol>
+  <symbol id="ic-activity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+  </symbol>
+  <symbol id="ic-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+  </symbol>
+  <symbol id="ic-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+  </symbol>
+  <symbol id="ic-check-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+  </symbol>
+  <symbol id="ic-alert-triangle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+  </symbol>
+  <symbol id="ic-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+  </symbol>
+  <symbol id="ic-trending-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
+  </symbol>
+  <symbol id="ic-trending-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/>
+  </symbol>
+  <symbol id="ic-bar-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+  </symbol>
+  <symbol id="ic-cpu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/>
+    <line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/>
+    <line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/>
+    <line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/>
+    <line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/>
+  </symbol>
+  <symbol id="ic-database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+    <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+  </symbol>
+  <symbol id="ic-wifi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+    <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/>
+  </symbol>
+  <symbol id="ic-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>
+  </symbol>
+  <symbol id="ic-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+  </symbol>
+  <symbol id="ic-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+  </symbol>
+  <symbol id="ic-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/>
+    <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+  </symbol>
+  <symbol id="ic-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+  </symbol>
+  <symbol id="ic-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <polygon points="5 3 19 12 5 21 5 3"/>
+  </symbol>
+  <symbol id="ic-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+  </symbol>
+  <symbol id="ic-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+  </symbol>
+  <symbol id="ic-x-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>
+  </symbol>
+  <symbol id="ic-minus-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/><line x1="8" y1="12" x2="16" y2="12"/>
+  </symbol>
+  <symbol id="ic-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+  </symbol>
+  <symbol id="ic-server" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/>
+    <line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/>
+  </symbol>
+  <symbol id="ic-smartphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
+  </symbol>
+  <symbol id="ic-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
+  </symbol>
+  <symbol id="ic-file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+    <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
+  </symbol>
+</svg>
+
+<style>
+/* ─────────────────────────────────────────
+   RESET & TOKENS
+───────────────────────────────────────── */
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  /* Brand */
+  --cobalt:#1246c8;
+  --cobalt-mid:#1a57e8;
+  --cobalt-bright:#3b76ff;
+  --cobalt-glow:rgba(26,87,232,.18);
+  --cobalt-faint:#edf2ff;
+  --sapphire:#0f3499;
+  /* Teal accent */
+  --teal:#059fb5;
+  --teal-light:#22d3ee;
+  /* Navy bg */
+  --navy:#070f24;
+  --navy-mid:#0c1830;
+  --navy-card:#111d38;
+  --navy-border:rgba(255,255,255,.07);
+  /* Status */
+  --green:#10b981;--green-bg:rgba(16,185,129,.1);--green-border:rgba(16,185,129,.25);
+  --amber:#f59e0b;--amber-bg:rgba(245,158,11,.1);--amber-border:rgba(245,158,11,.25);
+  --red:#ef4444;  --red-bg:rgba(239,68,68,.1);  --red-border:rgba(239,68,68,.25);
+  /* Neutral */
+  --slate:#8899bb;--border:#e2e8f0;
+  --surface:#f5f7fc;--white:#ffffff;
+  --text:#0b1426;--text2:#4b5a78;--text3:#9aaac5;
+  /* Shadows */
+  --shadow-xs:0 1px 2px rgba(0,0,0,.05);
+  --shadow-sm:0 2px 8px rgba(0,0,0,.06);
+  --shadow-md:0 6px 24px rgba(0,0,0,.09);
+  --shadow-lg:0 20px 60px rgba(0,0,0,.14);
+  --shadow-cobalt:0 8px 32px rgba(26,87,232,.28);
+  /* Shape */
+  --r:14px;--r-sm:9px;--r-xs:6px;
+}
+
+html{scroll-behavior:smooth;font-size:15px}
+body{
+  font-family:'Sora',sans-serif;
+  background:var(--surface);
+  color:var(--text);
+  line-height:1.55;
+  overflow-x:hidden;
+}
+svg.icon{
+  display:inline-block;
+  vertical-align:middle;
+  flex-shrink:0;
+}
+
+/* ─────────────────────────────────────────
+   NAV
+───────────────────────────────────────── */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:300;
+  height:64px;display:flex;align-items:center;
+  padding:0 28px;gap:0;
+  background:rgba(255,255,255,.97);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  box-shadow:var(--shadow-xs);
+}
+.nav-brand{
+  display:flex;align-items:center;gap:11px;
+  text-decoration:none;
+}
+.nav-logomark{
+  width:38px;height:38px;
+  background:linear-gradient(135deg,var(--cobalt),var(--teal));
+  border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 12px rgba(18,70,200,.35);
+}
+.nav-logomark svg.icon{color:#fff}
+.nav-wordmark{
+  font-size:1.05rem;font-weight:800;
+  letter-spacing:-.04em;color:var(--navy);
+  line-height:1;
+}
+.nav-wordmark span{color:var(--cobalt-mid)}
+.nav-tagline{
+  font-size:.62rem;font-weight:500;
+  letter-spacing:.06em;
+  color:var(--text3);
+  text-transform:uppercase;
+  margin-top:2px;
+}
+.nav-divider{width:1px;height:28px;background:var(--border);margin:0 24px}
+.nav-tabs{display:flex;gap:2px}
+.nav-tab{
+  display:flex;align-items:center;gap:7px;
+  padding:8px 14px;border-radius:var(--r-sm);border:none;
+  background:transparent;
+  font-family:'Sora',sans-serif;font-size:.78rem;font-weight:500;
+  color:var(--text2);cursor:pointer;transition:all .18s;white-space:nowrap;
+}
+.nav-tab svg.icon{opacity:.6;transition:opacity .18s}
+.nav-tab:hover{background:var(--cobalt-faint);color:var(--cobalt)}
+.nav-tab:hover svg.icon{opacity:1}
+.nav-tab.active{background:var(--cobalt-mid);color:#fff}
+.nav-tab.active svg.icon{opacity:1;color:#fff}
+.nav-tab-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.65rem;font-weight:600;
+  background:rgba(0,0,0,.08);
+  border-radius:4px;padding:1px 5px;
+}
+.nav-tab.active .nav-tab-num{background:rgba(255,255,255,.2)}
+
+/* ─────────────────────────────────────────
+   PAGES
+───────────────────────────────────────── */
+.page{display:none;padding-top:64px;min-height:100vh}
+.page.active{display:block}
+
+/* ═══════════════════════════════════════
+   PAGE 1 — OVERVIEW
+═══════════════════════════════════════ */
+.hero{
+  background:linear-gradient(160deg,var(--navy) 0%,#0a1e50 55%,#082040 100%);
+  padding:80px 40px 100px;
+  text-align:center;
+  position:relative;overflow:hidden;
+}
+/* grid texture */
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+  background-size:52px 52px;
+  pointer-events:none;
+}
+/* glow orbs */
+.hero-orb{
+  position:absolute;border-radius:50%;pointer-events:none;
+}
+.hero-orb-1{
+  width:500px;height:500px;
+  background:radial-gradient(circle,rgba(26,87,232,.2) 0%,transparent 70%);
+  top:-120px;right:-80px;
+}
+.hero-orb-2{
+  width:360px;height:360px;
+  background:radial-gradient(circle,rgba(5,159,181,.15) 0%,transparent 70%);
+  bottom:-40px;left:5%;
+}
+
+.hero-inner{position:relative;z-index:1;max-width:720px;margin:0 auto}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--teal-light);
+  background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.2);
+  border-radius:100px;padding:6px 16px;margin-bottom:28px;
+}
+.hero-badge-pulse{
+  width:7px;height:7px;border-radius:50%;background:var(--teal-light);
+  animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+
+.hero-title{
+  font-size:clamp(2.2rem,5.5vw,3.6rem);
+  font-weight:800;color:#fff;
+  line-height:1.06;letter-spacing:-.04em;
+  margin-bottom:18px;
+}
+.hero-title .accent{
+  background:linear-gradient(90deg,var(--cobalt-bright),var(--teal-light));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero-sub{
+  font-size:1rem;color:rgba(255,255,255,.55);
+  max-width:520px;margin:0 auto 40px;line-height:1.75;font-weight:300;
+}
+.hero-cta{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:15px 34px;
+  background:linear-gradient(135deg,var(--cobalt-mid),var(--teal));
+  color:#fff;font-family:'Sora',sans-serif;font-size:.95rem;font-weight:700;
+  border:none;border-radius:12px;cursor:pointer;
+  box-shadow:var(--shadow-cobalt);
+  transition:all .25s;letter-spacing:-.01em;
+}
+.hero-cta:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(26,87,232,.42)}
+.hero-cta svg.icon{transition:transform .25s}
+.hero-cta:hover svg.icon{transform:translateX(3px)}
+
+/* stat strip */
+.hero-stats{
+  display:flex;justify-content:center;gap:48px;margin-top:56px;
+  flex-wrap:wrap;
+}
+.hero-stat{text-align:center}
+.hero-stat-val{
+  font-family:'JetBrains Mono',monospace;
+  font-size:1.8rem;font-weight:600;
+  background:linear-gradient(90deg,#fff,var(--teal-light));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  line-height:1;
+}
+.hero-stat-label{font-size:.7rem;color:rgba(255,255,255,.4);margin-top:5px;letter-spacing:.06em;text-transform:uppercase}
+
+/* flow section */
+.section-wrap{max-width:960px;margin:0 auto;padding:56px 24px 80px}
+.section-label{
+  font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--cobalt-mid);margin-bottom:20px;
+  display:flex;align-items:center;gap:8px;
+}
+.section-label::before{content:'';width:20px;height:2px;background:var(--cobalt-mid)}
+.section-title{font-size:1.5rem;font-weight:800;color:var(--text);letter-spacing:-.03em;margin-bottom:8px}
+.section-sub{font-size:.9rem;color:var(--text2);max-width:520px;line-height:1.7;margin-bottom:40px}
+
+/* flow diagram */
+.flow-card{
+  background:#fff;border-radius:var(--r);border:1px solid var(--border);
+  padding:40px 32px;box-shadow:var(--shadow-md);
+}
+.flow{
+  display:flex;align-items:center;
+  gap:0;overflow-x:auto;padding-bottom:4px;
+}
+.flow-step{
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  flex:1;min-width:130px;padding:8px;
+}
+.flow-step-bubble{
+  width:56px;height:56px;border-radius:16px;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;
+  transition:transform .2s;
+}
+.flow-step:hover .flow-step-bubble{transform:translateY(-3px)}
+.fs1 .flow-step-bubble{background:linear-gradient(135deg,#dbeafe,#bfdbfe)}
+.fs1 .flow-step-bubble svg{color:#1d4ed8}
+.fs2 .flow-step-bubble{background:linear-gradient(135deg,#fef9c3,#fde68a)}
+.fs2 .flow-step-bubble svg{color:#b45309}
+.fs3 .flow-step-bubble{background:linear-gradient(135deg,#fee2e2,#fca5a5)}
+.fs3 .flow-step-bubble svg{color:#b91c1c}
+.fs4 .flow-step-bubble{background:linear-gradient(135deg,#d1fae5,#a7f3d0)}
+.fs4 .flow-step-bubble svg{color:#065f46}
+.fs5 .flow-step-bubble{background:linear-gradient(135deg,#ede9fe,#c4b5fd)}
+.fs5 .flow-step-bubble svg{color:#6d28d9}
+
+.flow-step-name{font-size:.82rem;font-weight:700;color:var(--text);text-align:center}
+.flow-step-desc{font-size:.68rem;color:var(--text3);text-align:center;line-height:1.45}
+
+.flow-connector{
+  display:flex;align-items:center;flex-shrink:0;padding:0 4px;margin-top:-22px;
+}
+.flow-connector svg{color:var(--border)}
+
+/* how cards */
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+.how-card{
+  background:#fff;border:1px solid var(--border);border-radius:var(--r);
+  padding:24px;transition:all .2s;position:relative;overflow:hidden;
+}
+.how-card::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:linear-gradient(180deg,var(--cobalt-mid),var(--teal));
+  transform:scaleY(0);transform-origin:top;transition:transform .25s;
+}
+.how-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.how-card:hover::before{transform:scaleY(1)}
+.how-icon{
+  width:40px;height:40px;border-radius:10px;
+  background:var(--cobalt-faint);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:14px;
+}
+.how-icon svg{color:var(--cobalt-mid)}
+.how-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.65rem;font-weight:600;color:var(--text3);
+  letter-spacing:.06em;margin-bottom:6px;
+}
+.how-title{font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:6px}
+.how-desc{font-size:.75rem;color:var(--text2);line-height:1.6}
+
+/* ═══════════════════════════════════════
+   PAGE 2 — SIMULATION
+═══════════════════════════════════════ */
+.sim-outer{padding:16px;max-width:1440px;margin:0 auto}
+.sim-grid{
+  display:grid;
+  grid-template-columns:292px 1fr 1fr;
+  grid-template-rows:auto auto;
+  gap:14px;
+}
+
+/* Card base */
+.card{
+  background:#fff;border-radius:var(--r);
+  border:1px solid var(--border);
+  padding:20px;box-shadow:var(--shadow-sm);
+  position:relative;overflow:hidden;
+}
+.card-head{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:16px;
+}
+.card-title{
+  font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--text3);display:flex;align-items:center;gap:6px;
+}
+.card-title-dot{
+  width:5px;height:5px;border-radius:50%;
+  background:linear-gradient(135deg,var(--cobalt-mid),var(--teal));
+}
+.card-badge{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.62rem;font-weight:600;
+  padding:3px 8px;border-radius:4px;
+  background:var(--cobalt-faint);color:var(--cobalt-mid);
+}
+
+/* ── SECTION A: Profile ── */
+.profile-card{grid-column:1;grid-row:1/3}
+.profile-avatar-wrap{
+  display:flex;align-items:center;gap:14px;
+  padding:16px;background:linear-gradient(135deg,var(--navy),var(--navy-mid));
+  border-radius:10px;margin-bottom:16px;
+}
+.profile-avatar{
+  width:48px;height:48px;border-radius:50%;
+  background:linear-gradient(135deg,var(--cobalt-mid),var(--teal));
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  box-shadow:0 4px 12px rgba(26,87,232,.4);
+}
+.profile-avatar svg{color:#fff}
+.profile-name{font-size:1rem;font-weight:700;color:#fff;letter-spacing:-.02em}
+.profile-sub{font-size:.7rem;color:rgba(255,255,255,.45);margin-top:2px}
+.profile-rows{display:flex;flex-direction:column;gap:8px}
+.prow{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:9px 12px;
+  background:var(--surface);border-radius:var(--r-sm);
+  border:1px solid var(--border);
+}
+.prow-label{font-size:.72rem;color:var(--text2);display:flex;align-items:center;gap:6px}
+.prow-label svg{color:var(--text3)}
+.prow-val{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.76rem;font-weight:600;color:var(--text);
+}
+.prow-badge{
+  font-size:.65rem;font-weight:700;
+  background:var(--cobalt-faint);color:var(--cobalt-mid);
+  border:1px solid #bfdbfe;border-radius:4px;padding:2px 7px;
+}
+
+/* savings live */
+#savings-val{transition:color .4s}
+.savings-dropping{color:var(--red)!important}
+.savings-ok{color:var(--green)!important}
+
+/* controls */
+.ctrl-wrap{margin-top:16px;display:flex;flex-direction:column;gap:8px}
+.btn-start{
+  width:100%;padding:12px;
+  background:linear-gradient(135deg,var(--cobalt-mid),var(--teal));
+  color:#fff;font-family:'Sora',sans-serif;font-size:.85rem;font-weight:700;
+  border:none;border-radius:var(--r-sm);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  box-shadow:0 4px 14px rgba(26,87,232,.3);transition:all .2s;
+}
+.btn-start:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 6px 20px rgba(26,87,232,.4)}
+.btn-start:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.btn-reset{
+  width:100%;padding:10px;background:transparent;
+  color:var(--text2);font-family:'Sora',sans-serif;font-size:.8rem;font-weight:500;
+  border:1px solid var(--border);border-radius:var(--r-sm);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  transition:all .2s;
+}
+.btn-reset:hover{border-color:var(--red);color:var(--red)}
+.sim-status-bar{
+  display:flex;align-items:center;gap:7px;
+  padding:7px 10px;background:var(--surface);border-radius:var(--r-xs);
+  border:1px solid var(--border);font-size:.68rem;color:var(--text3);
+}
+.status-indicator{
+  width:7px;height:7px;border-radius:50%;background:#cbd5e1;flex-shrink:0;
+}
+.status-indicator.live{background:var(--green);animation:pulse 1.2s ease-in-out infinite}
+
+/* ── SECTION B: Transaction Feed ── */
+.txn-card{grid-column:2;grid-row:1}
+.txn-feed{
+  height:290px;overflow-y:auto;
+  display:flex;flex-direction:column;gap:7px;
+}
+.txn-feed::-webkit-scrollbar{width:3px}
+.txn-feed::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+
+.txn-empty-state{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  height:100%;gap:10px;
+  color:var(--text3);font-size:.82rem;
+}
+.txn-empty-icon{
+  width:44px;height:44px;border-radius:12px;
+  background:var(--cobalt-faint);
+  display:flex;align-items:center;justify-content:center;
+}
+.txn-empty-icon svg{color:var(--cobalt-mid);opacity:.5}
+
+.txn-item{
+  display:flex;align-items:center;gap:12px;
+  padding:10px 12px;border-radius:var(--r-sm);
+  border:1px solid var(--border);
+  background:#fff;
+  animation:txnSlide .3s ease;
+  transition:box-shadow .15s;
+}
+.txn-item:hover{box-shadow:var(--shadow-sm)}
+@keyframes txnSlide{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:translateX(0)}}
+
+.txn-icon-wrap{
+  width:34px;height:34px;border-radius:9px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.txn-icon-wrap.positive{background:var(--green-bg);border:1px solid var(--green-border)}
+.txn-icon-wrap.positive svg{color:var(--green)}
+.txn-icon-wrap.negative{background:var(--red-bg);border:1px solid var(--red-border)}
+.txn-icon-wrap.negative svg{color:var(--red)}
+.txn-icon-wrap.warning{background:var(--amber-bg);border:1px solid var(--amber-border)}
+.txn-icon-wrap.warning svg{color:var(--amber)}
+.txn-icon-wrap.neutral{background:var(--cobalt-faint);border:1px solid #bfdbfe}
+.txn-icon-wrap.neutral svg{color:var(--cobalt-mid)}
+
+.txn-body{flex:1;min-width:0}
+.txn-name{font-size:.8rem;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.txn-sub{font-size:.66rem;color:var(--text3);margin-top:1px}
+.txn-right{text-align:right;flex-shrink:0}
+.txn-amount{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.78rem;font-weight:600;
+}
+.txn-amount.positive{color:var(--green)}
+.txn-amount.negative{color:var(--red)}
+.txn-amount.neutral{color:var(--text2)}
+.txn-pill{
+  font-size:.58rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+  padding:2px 6px;border-radius:4px;margin-top:3px;display:inline-block;
+}
+.txn-pill.risk{background:var(--red-bg);color:var(--red);border:1px solid var(--red-border)}
+.txn-pill.safe{background:var(--green-bg);color:var(--green);border:1px solid var(--green-border)}
+.txn-pill.watch{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-border)}
+.txn-pill.info{background:var(--cobalt-faint);color:var(--cobalt-mid);border:1px solid #bfdbfe}
+
+/* ── SECTION C: Risk Score ── */
+.risk-card{grid-column:3;grid-row:1}
+.risk-core{text-align:center;padding:8px 0 20px}
+.risk-number{
+  font-family:'JetBrains Mono',monospace;
+  font-size:4rem;font-weight:700;line-height:1;
+  letter-spacing:-.04em;
+  transition:color .5s;
+}
+.risk-denom{font-size:1.5rem;font-weight:400;opacity:.35}
+.risk-level{
+  font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  margin-top:6px;transition:color .5s;
+}
+.risk-desc{font-size:.7rem;color:var(--text3);margin-top:4px}
+
+/* gauge arc */
+.gauge-svg-wrap{position:relative;width:160px;height:90px;margin:0 auto 4px}
+.gauge-svg{width:100%;height:100%;overflow:visible}
+
+/* bar */
+.risk-bar-track{
+  height:8px;border-radius:100px;
+  background:var(--surface);border:1px solid var(--border);
+  overflow:hidden;margin:16px 0 6px;
+}
+.risk-bar-fill{
+  height:100%;border-radius:100px;
+  transition:width .9s cubic-bezier(.34,1.56,.64,1),background .6s ease;
+  background:var(--green);
+}
+.risk-bar-ticks{display:flex;justify-content:space-between;font-size:.58rem;color:var(--text3);
+  font-family:'JetBrains Mono',monospace}
+
+/* color states */
+.rs-low  .risk-number,.rs-low  .risk-level{color:var(--green)}
+.rs-low  .risk-bar-fill{background:linear-gradient(90deg,#34d399,var(--green))}
+.rs-med  .risk-number,.rs-med  .risk-level{color:var(--amber)}
+.rs-med  .risk-bar-fill{background:linear-gradient(90deg,#fcd34d,var(--amber))}
+.rs-high .risk-number,.rs-high .risk-level{color:var(--red)}
+.rs-high .risk-bar-fill{background:linear-gradient(90deg,#f87171,var(--red))}
+
+/* risk events log */
+.risk-log{margin-top:16px;display:flex;flex-direction:column;gap:6px}
+.risk-log-empty{font-size:.7rem;color:var(--text3);text-align:center;padding:12px 0}
+.risk-event-row{
+  display:flex;align-items:center;gap:10px;
+  padding:7px 10px;border-radius:var(--r-xs);
+  background:var(--surface);border:1px solid var(--border);
+  animation:fadeUp .28s ease;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.risk-event-icon{width:22px;height:22px;border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.risk-event-icon.up{background:var(--red-bg)}
+.risk-event-icon.up svg{color:var(--red)}
+.risk-event-icon.dn{background:var(--green-bg)}
+.risk-event-icon.dn svg{color:var(--green)}
+.risk-event-name{font-size:.72rem;color:var(--text2);flex:1}
+.risk-event-delta{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.72rem;font-weight:700;
+}
+.risk-event-delta.up{color:var(--red)}
+.risk-event-delta.dn{color:var(--green)}
+
+/* ── SECTION D: Explainability ── */
+.explain-card{grid-column:2/4;grid-row:2}
+.explain-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.explain-tag{
+  font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--cobalt-mid);background:var(--cobalt-faint);
+  border:1px solid #bfdbfe;border-radius:4px;padding:3px 8px;
+}
+
+.explain-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.explain-item{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:12px 14px;border-radius:var(--r-sm);
+  border:1px solid var(--border);background:#fff;
+  animation:fadeUp .35s ease;transition:box-shadow .15s;
+}
+.explain-item:hover{box-shadow:var(--shadow-sm)}
+.explain-icon{
+  width:30px;height:30px;border-radius:7px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;margin-top:1px;
+}
+.explain-icon.red{background:var(--red-bg)}
+.explain-icon.red svg{color:var(--red)}
+.explain-icon.amber{background:var(--amber-bg)}
+.explain-icon.amber svg{color:var(--amber)}
+.explain-icon.green{background:var(--green-bg)}
+.explain-icon.green svg{color:var(--green)}
+.explain-body{}
+.explain-label{font-size:.72rem;font-weight:700;color:var(--text);margin-bottom:2px}
+.explain-text{font-size:.68rem;color:var(--text2);line-height:1.5}
+
+.explain-empty{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:8px;padding:28px;color:var(--text3);font-size:.8rem;grid-column:1/4;
+}
+.explain-empty-icon{
+  width:40px;height:40px;border-radius:10px;
+  background:var(--cobalt-faint);
+  display:flex;align-items:center;justify-content:center;
+}
+.explain-empty-icon svg{color:var(--cobalt-mid);opacity:.4}
+
+/* ═══════════════════════════════════════
+   INTERVENTION MODAL
+═══════════════════════════════════════ */
+.modal-overlay{
+  position:fixed;inset:0;z-index:500;
+  background:rgba(7,15,36,.7);
+  backdrop-filter:blur(6px);
+  display:none;align-items:center;justify-content:center;padding:20px;
+}
+.modal-overlay.open{display:flex}
+.modal{
+  background:#fff;border-radius:20px;
+  padding:40px 36px;max-width:460px;width:100%;
+  box-shadow:0 32px 80px rgba(0,0,0,.25);
+  animation:modalPop .3s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes modalPop{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:scale(1)}}
+
+.modal-warning-ring{
+  width:72px;height:72px;border-radius:50%;
+  background:var(--red-bg);border:2px solid var(--red-border);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 20px;
+  animation:ringPulse 1.5s ease-in-out infinite;
+}
+@keyframes ringPulse{0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,.3)}50%{box-shadow:0 0 0 12px rgba(239,68,68,0)}}
+.modal-warning-ring svg{color:var(--red)}
+.modal-title{font-size:1.25rem;font-weight:800;color:var(--text);text-align:center;letter-spacing:-.03em;margin-bottom:6px}
+.modal-sub{font-size:.82rem;color:var(--text2);text-align:center;line-height:1.65;margin-bottom:20px}
+.modal-score-badge{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  background:var(--red-bg);border:1px solid var(--red-border);
+  border-radius:var(--r-sm);padding:10px 16px;margin-bottom:24px;
+}
+.modal-score-label{font-size:.72rem;font-weight:600;color:var(--red);letter-spacing:.06em}
+.modal-score-val{
+  font-family:'JetBrains Mono',monospace;
+  font-size:1.4rem;font-weight:700;color:var(--red);
+}
+.modal-actions{display:flex;flex-direction:column;gap:9px}
+.modal-action-btn{
+  display:flex;align-items:center;gap:12px;
+  padding:13px 16px;border-radius:var(--r-sm);
+  border:1.5px solid var(--border);background:#fff;
+  cursor:pointer;font-family:'Sora',sans-serif;
+  transition:all .18s;text-align:left;width:100%;
+}
+.modal-action-btn:hover{
+  background:var(--cobalt-mid);border-color:var(--cobalt-mid);
+  transform:translateX(4px);
+}
+.modal-action-btn:hover .mab-icon{background:rgba(255,255,255,.15);border-color:transparent}
+.modal-action-btn:hover .mab-title,.modal-action-btn:hover .mab-sub{color:#fff}
+.mab-icon{
+  width:36px;height:36px;border-radius:9px;flex-shrink:0;
+  background:var(--cobalt-faint);border:1px solid #bfdbfe;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .18s;
+}
+.mab-icon svg{color:var(--cobalt-mid);transition:color .18s}
+.modal-action-btn:hover .mab-icon svg{color:#fff}
+.mab-body{}
+.mab-title{font-size:.84rem;font-weight:700;color:var(--text);margin-bottom:1px;transition:color .18s}
+.mab-sub{font-size:.68rem;color:var(--text3);transition:color .18s}
+.mab-arrow{margin-left:auto;flex-shrink:0}
+.mab-arrow svg{color:var(--text3);transition:color .18s}
+.modal-action-btn:hover .mab-arrow svg{color:rgba(255,255,255,.6)}
+
+.modal-success-wrap{
+  display:none;flex-direction:column;align-items:center;gap:12px;
+  text-align:center;padding:8px 0;
+}
+.modal-success-ring{
+  width:72px;height:72px;border-radius:50%;
+  background:var(--green-bg);border:2px solid var(--green-border);
+  display:flex;align-items:center;justify-content:center;
+  animation:successPop .4s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes successPop{from{transform:scale(0)}to{transform:scale(1)}}
+.modal-success-ring svg{color:var(--green)}
+.modal-success-title{font-size:1.1rem;font-weight:800;color:var(--text);letter-spacing:-.02em}
+.modal-success-action{
+  font-size:.8rem;font-weight:600;color:var(--green);
+  background:var(--green-bg);border:1px solid var(--green-border);
+  border-radius:var(--r-xs);padding:6px 14px;
+}
+.modal-success-sub{font-size:.75rem;color:var(--text3);line-height:1.6;max-width:300px}
+
+/* ═══════════════════════════════════════
+   PAGE 3 — RISK TREND
+═══════════════════════════════════════ */
+.p3-wrap{max-width:960px;margin:0 auto;padding:36px 24px 80px}
+.p3-card{
+  background:#fff;border-radius:var(--r);border:1px solid var(--border);
+  padding:28px;box-shadow:var(--shadow-md);
+}
+.p3-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px;gap:16px;flex-wrap:wrap}
+.p3-legend{display:flex;gap:20px;flex-wrap:wrap;align-items:center}
+.legend-item{display:flex;align-items:center;gap:7px;font-size:.72rem;color:var(--text2);font-weight:500}
+.legend-pip{width:28px;height:3px;border-radius:2px}
+.legend-pip.blue{background:var(--cobalt-mid)}
+.legend-pip.red{background:var(--red);border-top:2px dashed var(--red)}
+.legend-pip.green{background:var(--green)}
+.chart-canvas-wrap{height:320px;position:relative}
+
+.timeline-phases{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:20px}
+.phase-card{padding:16px;border-radius:var(--r-sm);border:1px solid}
+.phase-card.stress{background:var(--red-bg);border-color:var(--red-border)}
+.phase-card.intervention{background:var(--amber-bg);border-color:var(--amber-border)}
+.phase-card.recovery{background:var(--green-bg);border-color:var(--green-border)}
+.phase-head{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.phase-icon{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.phase-card.stress .phase-icon{background:rgba(239,68,68,.15)}
+.phase-card.stress .phase-icon svg{color:var(--red)}
+.phase-card.intervention .phase-icon{background:rgba(245,158,11,.15)}
+.phase-card.intervention .phase-icon svg{color:var(--amber)}
+.phase-card.recovery .phase-icon{background:rgba(16,185,129,.15)}
+.phase-card.recovery .phase-icon svg{color:var(--green)}
+.phase-label{font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.phase-card.stress .phase-label{color:var(--red)}
+.phase-card.intervention .phase-label{color:var(--amber)}
+.phase-card.recovery .phase-label{color:var(--green)}
+.phase-desc{font-size:.73rem;color:var(--text2);line-height:1.55}
+
+.outcome-strip{
+  display:flex;align-items:center;gap:16px;
+  margin-top:16px;padding:20px 24px;
+  background:linear-gradient(135deg,var(--green-bg),rgba(16,185,129,.06));
+  border:1px solid var(--green-border);border-radius:var(--r-sm);
+}
+.outcome-icon-wrap{
+  width:48px;height:48px;border-radius:12px;
+  background:rgba(16,185,129,.15);border:1px solid var(--green-border);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.outcome-icon-wrap svg{color:var(--green)}
+.outcome-title{font-size:.95rem;font-weight:800;color:var(--green);letter-spacing:-.02em}
+.outcome-sub{font-size:.75rem;color:var(--text2);margin-top:3px;line-height:1.55}
+
+/* ═══════════════════════════════════════
+   PAGE 4 — ARCHITECTURE
+═══════════════════════════════════════ */
+.p4-wrap{max-width:960px;margin:0 auto;padding:36px 24px 80px}
+.arch-main{
+  background:#fff;border-radius:var(--r);border:1px solid var(--border);
+  padding:40px 36px;box-shadow:var(--shadow-md);
+}
+.arch-col{display:flex;flex-direction:column;align-items:center;gap:0;width:100%}
+
+.arch-layer{width:100%;display:flex;flex-direction:column;align-items:center;margin-bottom:0}
+.arch-row{display:flex;gap:12px;width:100%}
+.arch-node{
+  flex:1;padding:18px 16px;border-radius:var(--r-sm);
+  border:1px solid;text-align:center;transition:transform .2s,box-shadow .2s;
+  cursor:default;
+}
+.arch-node:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.arch-node.src{background:#dbeafe;border-color:#93c5fd}
+.arch-node.src .arch-node-icon svg{color:#1d4ed8}
+.arch-node.eng{background:#fef3c7;border-color:#fcd34d}
+.arch-node.eng .arch-node-icon svg{color:#b45309}
+.arch-node.dec{background:var(--red-bg);border-color:var(--red-border)}
+.arch-node.dec .arch-node-icon svg{color:var(--red)}
+.arch-node.out{background:var(--green-bg);border-color:var(--green-border)}
+.arch-node.out .arch-node-icon svg{color:var(--green)}
+
+.arch-node-icon{
+  width:40px;height:40px;border-radius:10px;
+  background:rgba(255,255,255,.6);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 10px;
+}
+.arch-node-title{font-size:.85rem;font-weight:700;color:var(--text);margin-bottom:3px}
+.arch-node-desc{font-size:.67rem;color:var(--text2);line-height:1.5}
+.arch-layer-label{
+  font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--text3);margin:6px 0 0;text-align:center;
+}
+
+.arch-arrow-down{
+  display:flex;flex-direction:column;align-items:center;
+  margin:12px 0;gap:2px;
+}
+.arch-arrow-line{width:2px;height:24px;background:linear-gradient(180deg,var(--cobalt-mid),var(--teal))}
+.arch-arrow-tip{
+  width:0;height:0;
+  border-left:5px solid transparent;border-right:5px solid transparent;
+  border-top:7px solid var(--teal);
+}
+
+.rules-card{
+  background:#fff;border:1px solid var(--border);border-radius:var(--r);
+  padding:24px;box-shadow:var(--shadow-sm);margin-top:14px;
+}
+.rules-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.rule-row{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:10px 12px;border-radius:var(--r-xs);border:1px solid;
+  font-size:.75rem;
+}
+.rule-row.up{background:var(--red-bg);border-color:var(--red-border)}
+.rule-row.dn{background:var(--green-bg);border-color:var(--green-border)}
+.rule-row svg{flex-shrink:0;margin-top:1px}
+.rule-row.up svg{color:var(--red)}
+.rule-row.dn svg{color:var(--green)}
+.rule-if{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:.68rem}
+.rule-row.up .rule-if{color:var(--red)}
+.rule-row.dn .rule-if{color:var(--green)}
+.rule-body{color:var(--text2);line-height:1.5}
+
+.tech-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;align-items:center}
+.tech-label{font-size:.65rem;color:var(--text3);font-weight:600;margin-right:4px}
+.tech-chip{
+  font-family:'JetBrains Mono',monospace;font-size:.63rem;
+  padding:3px 9px;border-radius:4px;
+  background:var(--cobalt-faint);border:1px solid #bfdbfe;color:var(--cobalt-mid);
+}
+
+/* ─────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────── */
+@media(max-width:1100px){
+  .sim-grid{grid-template-columns:260px 1fr;grid-template-rows:auto auto auto}
+  .risk-card{grid-column:2;grid-row:1}
+  .txn-card{grid-column:1/3;grid-row:2}
+  .explain-card{grid-column:1/3;grid-row:3}
+  .explain-grid{grid-template-columns:1fr 1fr}
+  .explain-empty{grid-column:1/3}
+}
+@media(max-width:760px){
+  .nav-tabs .nav-tab{font-size:.7rem;padding:7px 10px}
+  .nav-tab-num{display:none}
+  .sim-grid{grid-template-columns:1fr}
+  .profile-card{grid-column:1;grid-row:1}
+  .txn-card{grid-column:1;grid-row:2}
+  .risk-card{grid-column:1;grid-row:3}
+  .explain-card{grid-column:1;grid-row:4}
+  .explain-grid{grid-template-columns:1fr}
+  .explain-empty{grid-column:1}
+  .how-grid{grid-template-columns:1fr 1fr}
+  .flow{flex-wrap:wrap;justify-content:center}
+  .flow-connector{display:none}
+  .hero-stats{gap:28px}
+  .timeline-phases{grid-template-columns:1fr}
+  .rules-grid{grid-template-columns:1fr}
+  .arch-row{flex-direction:column}
+}
+@media(max-width:480px){
+  .how-grid{grid-template-columns:1fr}
+  .p3-header{flex-direction:column}
+  .hero-title{font-size:2rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════
+     NAV
+═══════════════════════════════ -->
+<nav class="nav">
+  <a class="nav-brand" href="#" onclick="showPage('p1',0);return false">
+    <div class="nav-logomark">
+      <svg class="icon" width="20" height="20"><use href="#ic-activity"/></svg>
+    </div>
+    <div>
+      <div class="nav-wordmark">Prevenza<span> AI</span></div>
+      <div class="nav-tagline">Risk Intelligence</div>
+    </div>
+  </a>
+  <div class="nav-divider"></div>
+  <div class="nav-tabs" id="nav-tabs">
+    <button class="nav-tab active" onclick="showPage('p1',0)">
+      <svg class="icon" width="13" height="13"><use href="#ic-layers"/></svg>
+      Overview <span class="nav-tab-num">01</span>
+    </button>
+    <button class="nav-tab" onclick="showPage('p2',1)">
+      <svg class="icon" width="13" height="13"><use href="#ic-activity"/></svg>
+      Simulation <span class="nav-tab-num">02</span>
+    </button>
+    <button class="nav-tab" onclick="showPage('p3',2)">
+      <svg class="icon" width="13" height="13"><use href="#ic-trending-up"/></svg>
+      Risk Trend <span class="nav-tab-num">03</span>
+    </button>
+    <button class="nav-tab" onclick="showPage('p4',3)">
+      <svg class="icon" width="13" height="13"><use href="#ic-cpu"/></svg>
+      Architecture <span class="nav-tab-num">04</span>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════
+     PAGE 1 — OVERVIEW
+═══════════════════════════════ -->
+<div class="page active" id="p1">
+
+  <div class="hero">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <div class="hero-badge-pulse"></div>
+        Pre-Delinquency Intelligence · Live Simulation
+      </div>
+      <h1 class="hero-title">Detect financial stress<br><span class="accent">before default occurs.</span></h1>
+      <p class="hero-sub">Prevenza AI monitors transaction behaviour to surface early warning signals — giving banks a 2–4 week window to intervene and preserve customer relationships.</p>
+      <button class="hero-cta" onclick="showPage('p2',1)">
+        Start Live Simulation
+        <svg class="icon" width="16" height="16"><use href="#ic-arrow-right"/></svg>
+      </button>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-val">2–4wk</div>
+          <div class="hero-stat-label">Early warning window</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-val">94.2%</div>
+          <div class="hero-stat-label">Prediction accuracy</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-val">38%</div>
+          <div class="hero-stat-label">Avg loss reduction</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-val">6–12×</div>
+          <div class="hero-stat-label">Typical year-1 ROI</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-wrap">
+    <div class="section-label">How it works</div>
+    <div class="section-title">From transaction to intervention in 5 steps</div>
+    <div class="section-sub">Each customer's transaction history is continuously analysed. Risk scores update automatically and trigger calibrated interventions before a payment is missed.</div>
+
+    <div class="flow-card">
+      <div class="flow">
+        <div class="flow-step fs1">
+          <div class="flow-step-bubble">
+            <svg class="icon" width="24" height="24"><use href="#ic-credit-card"/></svg>
+          </div>
+          <div class="flow-step-name">Transactions</div>
+          <div class="flow-step-desc">All debits, credits &amp; transfers monitored in real time</div>
+        </div>
+        <div class="flow-connector">
+          <svg class="icon" width="20" height="20"><use href="#ic-arrow-right"/></svg>
+        </div>
+        <div class="flow-step fs2">
+          <div class="flow-step-bubble">
+            <svg class="icon" width="24" height="24"><use href="#ic-eye"/></svg>
+          </div>
+          <div class="flow-step-name">Stress Detection</div>
+          <div class="flow-step-desc">Unusual patterns flagged automatically by ML models</div>
+        </div>
+        <div class="flow-connector">
+          <svg class="icon" width="20" height="20"><use href="#ic-arrow-right"/></svg>
+        </div>
+        <div class="flow-step fs3">
+          <div class="flow-step-bubble">
+            <svg class="icon" width="24" height="24"><use href="#ic-bar-chart"/></svg>
+          </div>
+          <div class="flow-step-name">Risk Score</div>
+          <div class="flow-step-desc">0–100 score with explainable factors updated every 6h</div>
+        </div>
+        <div class="flow-connector">
+          <svg class="icon" width="20" height="20"><use href="#ic-arrow-right"/></svg>
+        </div>
+        <div class="flow-step fs4">
+          <div class="flow-step-bubble">
+            <svg class="icon" width="24" height="24"><use href="#ic-zap"/></svg>
+          </div>
+          <div class="flow-step-name">Intervention</div>
+          <div class="flow-step-desc">Bank proactively reaches out with the right offer</div>
+        </div>
+        <div class="flow-connector">
+          <svg class="icon" width="20" height="20"><use href="#ic-arrow-right"/></svg>
+        </div>
+        <div class="flow-step fs5">
+          <div class="flow-step-bubble">
+            <svg class="icon" width="24" height="24"><use href="#ic-shield"/></svg>
+          </div>
+          <div class="flow-step-name">Default Prevented</div>
+          <div class="flow-step-desc">Customer on track, relationship preserved, loss avoided</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="how-grid">
+      <div class="how-card">
+        <div class="how-icon">
+          <svg class="icon" width="18" height="18"><use href="#ic-trending-up"/></svg>
+        </div>
+        <div class="how-num">01 / PROBLEM</div>
+        <div class="how-title">Banks act too late</div>
+        <div class="how-desc">Traditional systems only trigger after a missed payment — when recovery costs are already high and customer trust is damaged. Prevenza AI identifies stress 2–4 weeks earlier.</div>
+      </div>
+      <div class="how-card">
+        <div class="how-icon">
+          <svg class="icon" width="18" height="18"><use href="#ic-activity"/></svg>
+        </div>
+        <div class="how-num">02 / DETECTION</div>
+        <div class="how-title">Behavioural signals are the key</div>
+        <div class="how-desc">Salary delay, savings decline, failed auto-debits — each event raises the risk score using transparent, auditable rules. No black boxes. Every decision is explainable.</div>
+      </div>
+      <div class="how-card">
+        <div class="how-icon">
+          <svg class="icon" width="18" height="18"><use href="#ic-send"/></svg>
+        </div>
+        <div class="how-num">03 / RESULT</div>
+        <div class="how-title">Intervene at exactly the right moment</div>
+        <div class="how-desc">When the score crosses 70, the bank is alerted. Payment holidays, EMI extensions, or gentle reminders are deployed before the customer struggles — preserving the relationship.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════
+     PAGE 2 — SIMULATION
+═══════════════════════════════ -->
+<div class="page" id="p2">
+  <div class="sim-outer">
+    <div class="sim-grid">
+
+      <!-- A: Customer Profile -->
+      <div class="card profile-card">
+        <div class="card-head">
+          <div class="card-title"><div class="card-title-dot"></div>Customer Profile</div>
+          <div class="card-badge">LIVE</div>
+        </div>
+        <div class="profile-avatar-wrap">
+          <div class="profile-avatar">
+            <svg class="icon" width="22" height="22"><use href="#ic-user"/></svg>
+          </div>
+          <div>
+            <div class="profile-name">Rahul Sharma</div>
+            <div class="profile-sub">Personal Loan · Mumbai</div>
+          </div>
+        </div>
+        <div class="profile-rows">
+          <div class="prow">
+            <div class="prow-label">
+              <svg class="icon" width="12" height="12"><use href="#ic-trending-up"/></svg>
+              Monthly Salary
+            </div>
+            <div class="prow-val">₹50,000</div>
+          </div>
+          <div class="prow">
+            <div class="prow-label">
+              <svg class="icon" width="12" height="12"><use href="#ic-calendar"/></svg>
+              EMI Due
+            </div>
+            <div class="prow-val"><span class="prow-badge">10th of month</span></div>
+          </div>
+          <div class="prow">
+            <div class="prow-label">
+              <svg class="icon" width="12" height="12"><use href="#ic-database"/></svg>
+              Current Savings
+            </div>
+            <div class="prow-val" id="savings-val">₹30,000</div>
+          </div>
+          <div class="prow">
+            <div class="prow-label">
+              <svg class="icon" width="12" height="12"><use href="#ic-credit-card"/></svg>
+              Loan Type
+            </div>
+            <div class="prow-val">Personal Loan</div>
+          </div>
+          <div class="prow">
+            <div class="prow-label">
+              <svg class="icon" width="12" height="12"><use href="#ic-bar-chart"/></svg>
+              EMI Amount
+            </div>
+            <div class="prow-val">₹12,500</div>
+          </div>
+        </div>
+        <div class="ctrl-wrap">
+          <button class="btn-start" id="btn-start" onclick="startSim()">
+            <svg class="icon" width="14" height="14"><use href="#ic-play"/></svg>
+            Start Simulation
+          </button>
+          <button class="btn-reset" onclick="resetSim()">
+            <svg class="icon" width="13" height="13"><use href="#ic-refresh"/></svg>
+            Reset
+          </button>
+          <div class="sim-status-bar" id="sim-status">
+            <div class="status-indicator" id="status-dot"></div>
+            <span id="status-text">Simulation not started</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- B: Transaction Feed -->
+      <div class="card txn-card">
+        <div class="card-head">
+          <div class="card-title"><div class="card-title-dot"></div>Live Transaction Feed</div>
+          <div class="card-badge" id="txn-count-badge">0 events</div>
+        </div>
+        <div class="txn-feed" id="txn-feed">
+          <div class="txn-empty-state">
+            <div class="txn-empty-icon">
+              <svg class="icon" width="20" height="20"><use href="#ic-activity"/></svg>
+            </div>
+            <div>Click <strong>Start Simulation</strong> to watch live transactions appear</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- C: Risk Score -->
+      <div class="card risk-card" id="risk-card">
+        <div class="card-head">
+          <div class="card-title"><div class="card-title-dot"></div>Risk Score</div>
+          <div class="card-badge" id="risk-badge">LOW</div>
+        </div>
+        <div class="risk-core rs-low" id="risk-core">
+          <div class="risk-number" id="risk-num"><span id="score-int">12</span><span class="risk-denom">/100</span></div>
+          <div class="risk-level" id="risk-level">Stress Level: Low</div>
+          <div class="risk-desc" id="risk-desc">Monitoring active — no flags raised</div>
+        </div>
+        <div class="risk-bar-track">
+          <div class="risk-bar-fill" id="risk-bar" style="width:12%"></div>
+        </div>
+        <div class="risk-bar-ticks"><span>0</span><span>25</span><span>50</span><span>75</span><span>100</span></div>
+        <div class="risk-log" id="risk-log">
+          <div class="risk-log-empty">Risk change events will appear here</div>
+        </div>
+      </div>
+
+      <!-- D: Explainability -->
+      <div class="card explain-card">
+        <div class="explain-header">
+          <div class="card-title"><div class="card-title-dot"></div>Why Did Risk Increase?</div>
+          <div class="explain-tag">Explainable AI</div>
+        </div>
+        <div class="explain-grid" id="explain-grid">
+          <div class="explain-empty">
+            <div class="explain-empty-icon">
+              <svg class="icon" width="20" height="20"><use href="#ic-eye"/></svg>
+            </div>
+            <div>No risk factors identified yet — start the simulation to see explanations</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════
+     PAGE 3 — RISK TREND
+═══════════════════════════════ -->
+<div class="page" id="p3">
+  <div class="p3-wrap">
+    <div style="margin-bottom:24px">
+      <div class="section-label">Risk Trend Analysis</div>
+      <div class="section-title">30-Day Risk Score Journey</div>
+      <div class="section-sub">This chart shows how Rahul's financial stress built gradually, triggered the Prevenza AI alert, and receded after intervention — preventing a missed EMI.</div>
+    </div>
+
+    <div class="p3-card">
+      <div class="p3-header">
+        <div style="font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text3)">
+          Rahul Sharma · Personal Loan · Risk Score / 100
+        </div>
+        <div class="p3-legend">
+          <div class="legend-item"><div class="legend-pip blue"></div>Risk Score</div>
+          <div class="legend-item"><div class="legend-pip" style="background:var(--red);border-top:2px dashed var(--red)"></div>Alert Threshold (70)</div>
+        </div>
+      </div>
+      <div class="chart-canvas-wrap"><canvas id="trendChart"></canvas></div>
+    </div>
+
+    <div class="timeline-phases">
+      <div class="phase-card stress">
+        <div class="phase-head">
+          <div class="phase-icon">
+            <svg class="icon" width="14" height="14"><use href="#ic-trending-up"/></svg>
+          </div>
+          <div class="phase-label">Days 1–16 · Stress Builds</div>
+        </div>
+        <div class="phase-desc">Salary credited 5 days late. Savings decline by 12%. Utility paid at the deadline. Failed auto-debit for insurance premium. Risk score climbs from 15 to 78.</div>
+      </div>
+      <div class="phase-card intervention">
+        <div class="phase-head">
+          <div class="phase-icon">
+            <svg class="icon" width="14" height="14"><use href="#ic-zap"/></svg>
+          </div>
+          <div class="phase-label">Day 17 · Prevenza AI Triggers</div>
+        </div>
+        <div class="phase-desc">Score crosses the 70 threshold. Relationship manager is alerted. A 30-day payment holiday is offered and accepted by Rahul. Intervention recorded in audit log.</div>
+      </div>
+      <div class="phase-card recovery">
+        <div class="phase-head">
+          <div class="phase-icon">
+            <svg class="icon" width="14" height="14"><use href="#ic-check-circle"/></svg>
+          </div>
+          <div class="phase-label">Days 18–30 · Recovery</div>
+        </div>
+        <div class="phase-desc">Salary arrives on time. Spending normalises. Risk score drops from 58 to 22. EMI paid successfully on the 10th. Relationship preserved. Default prevented.</div>
+      </div>
+    </div>
+
+    <div class="outcome-strip">
+      <div class="outcome-icon-wrap">
+        <svg class="icon" width="22" height="22"><use href="#ic-target"/></svg>
+      </div>
+      <div>
+        <div class="outcome-title">Default Avoided</div>
+        <div class="outcome-sub">Proactive intervention on Day 17 prevented a missed EMI. Customer remains active. Bank avoided an estimated ₹18,750 in collections costs and preserved a long-term relationship.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════
+     PAGE 4 — ARCHITECTURE
+═══════════════════════════════ -->
+<div class="page" id="p4">
+  <div class="p4-wrap">
+    <div style="margin-bottom:24px">
+      <div class="section-label">System Architecture</div>
+      <div class="section-title">How Prevenza AI is built</div>
+      <div class="section-sub">Four clean layers — from raw data sources to real-world decisions. No unnecessary complexity.</div>
+    </div>
+
+    <div class="arch-main">
+      <div class="arch-col">
+
+        <div class="arch-layer">
+          <div class="arch-row">
+            <div class="arch-node src">
+              <div class="arch-node-icon"><svg class="icon" width="20" height="20"><use href="#ic-database"/></svg></div>
+              <div class="arch-node-title">Core Banking</div>
+              <div class="arch-node-desc">Account balances, loan details, repayment history</div>
+            </div>
+            <div class="arch-node src">
+              <div class="arch-node-icon"><svg class="icon" width="20" height="20"><use href="#ic-credit-card"/></svg></div>
+              <div class="arch-node-title">Transaction Stream</div>
+              <div class="arch-node-desc">Every debit, credit, transfer, ATM event — real time</div>
+            </div>
+            <div class="arch-node src">
+              <div class="arch-node-icon"><svg class="icon" width="20" height="20"><use href="#ic-smartphone"/></svg></div>
+              <div class="arch-node-title">Customer App</div>
+              <div class="arch-node-desc">Login patterns, support contacts, alerts dismissed</div>
+            </div>
+          </div>
+          <div class="arch-layer-label">Data Sources</div>
+        </div>
+
+        <div class="arch-arrow-down"><div class="arch-arrow-line"></div><div class="arch-arrow-tip"></div></div>
+
+        <div class="arch-layer">
+          <div class="arch-row">
+            <div class="arch-node eng">
+              <div class="arch-node-icon"><svg class="icon" width="20" height="20"><use href="#ic-cpu"/></svg></div>
+              <div class="arch-node-title">Risk Engine</div>
+              <div class="arch-node-desc">Computes 220+ features, applies scoring rules, updates score every 6 hours per customer</div>
+            </div>
+            <div class="arch-node eng">
+              <div class="arch-node-icon"><svg class="icon" width="20" height="20"><use href="#ic-activity"/></svg></div>
+              <div class="arch-node-title">ML Model</div>
+              <div class="arch-node-desc">Ensemble model trained on historical defaults — detects signal combinations humans miss</div>
+            </div>
+          </div>
+          <div class="arch-layer-label">Intelligence Layer</div>
+        </div>
+
+        <div class="arch-arrow-down"><div class="arch-arrow-line"></div><div class="arch-arrow-tip"></div></div>
+
+        <div class="arch-layer">
+          <div class="arch-row">
+            <div class="arch-node dec">
+              <div class="arch-node-icon"><svg class="icon" width="20" height="20"><use href="#ic-zap"/></svg></div>
+              <div class="arch-node-title">Decision Engine</div>
+              <div class="arch-node-desc">If score &gt; 70 → route to intervention workflow. Selects optimal channel: SMS, app, email, or relationship manager</div>
+            </div>
+          </div>
+          <div class="arch-layer-label">Decision Layer</div>
+        </div>
+
+        <div class="arch-arrow-down"><div class="arch-arrow-line"></div><div class="arch-arrow-tip"></div></div>
+
+        <div class="arch-layer">
+          <div class="arch-row">
+            <div class="arch-node out">
+              <div class="arch-node-icon"><svg class="icon" width="20" height="20"><use href="#ic-bar-chart"/></svg></div>
+              <div class="arch-node-title">Risk Dashboard</div>
+              <div class="arch-node-desc">Bank staff see flagged accounts, heatmaps, and intervention options</div>
+            </div>
+            <div class="arch-node out">
+              <div class="arch-node-icon"><svg class="icon" width="20" height="20"><use href="#ic-send"/></svg></div>
+              <div class="arch-node-title">Customer Outreach</div>
+              <div class="arch-node-desc">Personalised message offering payment holiday, EMI extension, or reminder</div>
+            </div>
+            <div class="arch-node out">
+              <div class="arch-node-icon"><svg class="icon" width="20" height="20"><use href="#ic-file-text"/></svg></div>
+              <div class="arch-node-title">Audit &amp; Compliance</div>
+              <div class="arch-node-desc">Every score, decision, and outcome logged for regulators and internal review</div>
+            </div>
+          </div>
+          <div class="arch-layer-label">Output Layer</div>
+        </div>
+
+      </div>
+
+      <div class="tech-row" style="margin-top:28px;padding-top:20px;border-top:1px solid var(--border)">
+        <span class="tech-label">Stack:</span>
+        <span class="tech-chip">React + TypeScript</span>
+        <span class="tech-chip">Node.js API</span>
+        <span class="tech-chip">MongoDB</span>
+        <span class="tech-chip">Apache Kafka</span>
+        <span class="tech-chip">AWS SageMaker</span>
+        <span class="tech-chip">Chart.js</span>
+        <span class="tech-chip">XGBoost / LightGBM</span>
+      </div>
+    </div>
+
+    <div class="rules-card">
+      <div class="card-head" style="margin-bottom:0">
+        <div class="card-title"><div class="card-title-dot"></div>Scoring Rules — Simple Logic</div>
+        <div class="explain-tag">Auditable · Transparent</div>
+      </div>
+      <div class="rules-grid">
+        <div class="rule-row up">
+          <svg class="icon" width="14" height="14"><use href="#ic-trending-up"/></svg>
+          <div class="rule-body">
+            <span class="rule-if">IF</span> salary delayed &gt; 3 days <span class="rule-if">→ +15</span> risk
+          </div>
+        </div>
+        <div class="rule-row up">
+          <svg class="icon" width="14" height="14"><use href="#ic-trending-down"/></svg>
+          <div class="rule-body">
+            <span class="rule-if">IF</span> savings drop &gt; 10% <span class="rule-if">→ +10</span> risk
+          </div>
+        </div>
+        <div class="rule-row up">
+          <svg class="icon" width="14" height="14"><use href="#ic-x-circle"/></svg>
+          <div class="rule-body">
+            <span class="rule-if">IF</span> auto-debit fails <span class="rule-if">→ +20</span> risk
+          </div>
+        </div>
+        <div class="rule-row up">
+          <svg class="icon" width="14" height="14"><use href="#ic-alert-triangle"/></svg>
+          <div class="rule-body">
+            <span class="rule-if">IF</span> utility payment late <span class="rule-if">→ +10</span> risk
+          </div>
+        </div>
+        <div class="rule-row dn">
+          <svg class="icon" width="14" height="14"><use href="#ic-zap"/></svg>
+          <div class="rule-body">
+            <span class="rule-if">IF</span> intervention sent <span class="rule-if">→ −20</span> risk
+          </div>
+        </div>
+        <div class="rule-row dn">
+          <svg class="icon" width="14" height="14"><use href="#ic-check-circle"/></svg>
+          <div class="rule-body">
+            <span class="rule-if">IF</span> salary credited on time <span class="rule-if">→ −10</span> risk
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════
+     INTERVENTION MODAL
+═══════════════════════════════ -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <div id="modal-main-content">
+      <div class="modal-warning-ring">
+        <svg class="icon" width="28" height="28"><use href="#ic-alert-triangle"/></svg>
+      </div>
+      <div class="modal-title">High Risk Detected</div>
+      <div class="modal-sub">Rahul Sharma's risk score has crossed the alert threshold. Prevenza AI recommends immediate intervention to prevent a missed EMI on the 10th.</div>
+      <div class="modal-score-badge">
+        <svg class="icon" width="14" height="14"><use href="#ic-activity"/></svg>
+        <span class="modal-score-label">Current Risk Score</span>
+        <span class="modal-score-val" id="modal-score-val">—</span>
+        <span class="modal-score-label">/ 100</span>
+      </div>
+      <div class="modal-actions">
+        <button class="modal-action-btn" onclick="doIntervention('30-day payment holiday approved and confirmed','ic-gift')">
+          <div class="mab-icon"><svg class="icon" width="16" height="16"><use href="#ic-gift"/></svg></div>
+          <div class="mab-body">
+            <div class="mab-title">Offer Payment Holiday</div>
+            <div class="mab-sub">Pause EMI for 30 days with no penalty</div>
+          </div>
+          <div class="mab-arrow"><svg class="icon" width="14" height="14"><use href="#ic-arrow-right"/></svg></div>
+        </button>
+        <button class="modal-action-btn" onclick="doIntervention('EMI due date extended by 15 days from the 10th','ic-calendar')">
+          <div class="mab-icon"><svg class="icon" width="16" height="16"><use href="#ic-calendar"/></svg></div>
+          <div class="mab-body">
+            <div class="mab-title">Extend EMI Date by 15 Days</div>
+            <div class="mab-sub">Move payment window to give breathing room</div>
+          </div>
+          <div class="mab-arrow"><svg class="icon" width="14" height="14"><use href="#ic-arrow-right"/></svg></div>
+        </button>
+        <button class="modal-action-btn" onclick="doIntervention('Friendly reminder SMS sent with payment support link','ic-bell')">
+          <div class="mab-icon"><svg class="icon" width="16" height="16"><use href="#ic-bell"/></svg></div>
+          <div class="mab-body">
+            <div class="mab-title">Send Gentle Reminder</div>
+            <div class="mab-sub">Proactive SMS reminder with support options</div>
+          </div>
+          <div class="mab-arrow"><svg class="icon" width="14" height="14"><use href="#ic-arrow-right"/></svg></div>
+        </button>
+      </div>
+    </div>
+    <div class="modal-success-wrap" id="modal-success-content">
+      <div class="modal-success-ring">
+        <svg class="icon" width="28" height="28"><use href="#ic-check-circle"/></svg>
+      </div>
+      <div class="modal-success-title">Intervention Sent Successfully</div>
+      <div class="modal-success-action" id="modal-success-action-text">Action taken</div>
+      <div class="modal-success-sub">Risk score is now reducing. Prevenza AI continues monitoring Rahul's account in real time. Default risk is declining.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════ -->
+<script>
+/* ─────────────────────────────
+   PAGE NAVIGATION
+───────────────────────────── */
+let chartBuilt = false;
+
+function showPage(id, tabIdx) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.nav-tab')[tabIdx].classList.add('active');
+  window.scrollTo(0, 0);
+  if (id === 'p3' && !chartBuilt) { chartBuilt = true; setTimeout(buildChart, 120); }
+}
+
+/* ─────────────────────────────
+   SIMULATION STATE
+───────────────────────────── */
+let running = false;
+let seqTimers  = [];   // setTimeout IDs only
+let checkerRef = null; // setInterval ID (kept separate so we can reliably clear it)
+let score = 12;
+let savings = 30000;
+let txnCount = 0;
+let interventionFired = false;
+let interventionDone = false;
+const INITIAL_SCORE = 12;
+const INITIAL_SAVINGS = 30000;
+
+/* ── helper: cancel everything cleanly ── */
+function cancelAll() {
+  seqTimers.forEach(id => clearTimeout(id));
+  seqTimers = [];
+  if (checkerRef !== null) { clearInterval(checkerRef); checkerRef = null; }
+}
+
+/* Transaction sequence — scripted for demo clarity */
+function buildSequence() {
+  // Re-build as closures so captured `savings` is always the live value at call-time
+  return [
+    { t: 1400,  fn: () => txn('ic-credit-card','ATM Withdrawal','₹5,000 cash withdrawal','neutral','-₹5,000','info','Normal') },
+    { t: 4200,  fn: () => txn('ic-smartphone','Mobile Recharge','Prepaid top-up ₹599','neutral','-₹599','info','On time') },
+    { t: 7200,  fn: () => {
+        if (!running) return;
+        txn('ic-alert-triangle','Salary Not Credited','Expected salary delayed — Day 3','warning','Pending','risk','Stress Signal');
+        delta(+15,'Salary delayed 3+ days','Salary was expected on the 1st but not credited — significant income disruption signal.','amber','ic-trending-up');
+        setSavings(savings * 0.88);
+        delta(+10,'Savings fell by 12%','Current account savings dropped more than 10% in a short window — reduced financial buffer.','amber','ic-trending-down');
+    }},
+    { t: 11500, fn: () => { if (!running) return; txn('ic-bar-chart','Grocery Spend','₹1,200 — well below usual ₹3,500','warning','-₹1,200','watch','Below avg'); } },
+    { t: 15000, fn: () => {
+        if (!running) return;
+        txn('ic-zap','Electricity Bill Paid','₹2,400 — 1 day before deadline','warning','-₹2,400','watch','Near deadline');
+        delta(+10,'Utility paid at last minute','Bill paid just 1 day before the due date — indicates cash flow tightening.','amber','ic-alert-triangle');
+    }},
+    { t: 19000, fn: () => {
+        if (!running) return;
+        txn('ic-trending-up','Salary Credited','₹50,000 received — 5 days late','positive','+₹50,000','risk','Delayed');
+        setSavings(32000);
+    }},
+    { t: 23000, fn: () => { if (!running) return; txn('ic-credit-card','Online Shopping','₹800 — Flipkart','neutral','-₹800','info','Normal'); } },
+    { t: 27000, fn: () => {
+        if (!running) return;
+        txn('ic-x-circle','Auto-Debit Failed','Insurance premium auto-pay rejected — insufficient balance','negative','FAILED','risk','High Risk');
+        delta(+20,'Auto-debit payment failed','Auto-debit for insurance premium was rejected — critical sign of cash flow failure.','red','ic-x-circle');
+    }},
+    { t: 31000, fn: () => { if (!running) return; txn('ic-credit-card','ATM Withdrawal','₹2,000 small withdrawal','negative','-₹2,000','watch','Small amount'); } },
+    { t: 35000, fn: () => {
+        if (!running) return;
+        txn('ic-trending-down','Large Transfer Out','₹8,000 sent to family — savings drop','negative','-₹8,000','risk','Stress Signal');
+        setSavings(savings - 8000);
+        delta(+8,'Large unexpected transfer','₹8,000 transferred out reduces savings further — pattern consistent with financial strain.','red','ic-trending-down');
+        // mark sim complete so user can restart after watching it through
+        setTimeout(() => { running = false; }, 2000);
+    }},
+  ];
+}
+
+function startSim() {
+  if (running) return;
+
+  // Full reset of state (but not the DOM reset — that's resetSim's job)
+  cancelAll();
+  running = true;
+  score = INITIAL_SCORE;
+  savings = INITIAL_SAVINGS;
+  txnCount = 0;
+  interventionFired = false;
+  interventionDone = false;
+
+  // DOM clear
+  document.getElementById('btn-start').disabled = true;
+  document.getElementById('status-dot').classList.add('live');
+  document.getElementById('status-text').textContent = 'Simulation running...';
+  document.getElementById('txn-feed').innerHTML = '';
+  document.getElementById('risk-log').innerHTML = '<div class="risk-log-empty">Risk change events will appear here</div>';
+  document.getElementById('explain-grid').innerHTML = `
+    <div class="explain-empty">
+      <div class="explain-empty-icon"><svg class="icon" width="20" height="20"><use href="#ic-eye"/></svg></div>
+      <div>No risk factors identified yet — stress signals will appear here</div>
+    </div>`;
+  document.getElementById('txn-count-badge').textContent = '0 events';
+  document.getElementById('savings-val').textContent = '₹30,000';
+  document.getElementById('savings-val').className = '';
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.getElementById('modal-main-content').style.display = 'block';
+  document.getElementById('modal-success-content').style.display = 'none';
+
+  // Reset score display immediately (no animation so it snaps to 12)
+  setScoreDisplay(INITIAL_SCORE, false);
+
+  // Schedule events
+  buildSequence().forEach(({ t, fn }) => {
+    const id = setTimeout(fn, t);
+    seqTimers.push(id);
+  });
+
+  // Intervention checker — stored separately so reset can always clear it
+  checkerRef = setInterval(() => {
+    if (!running) { clearInterval(checkerRef); checkerRef = null; return; }
+    if (score >= 70 && !interventionFired && !interventionDone) {
+      interventionFired = true;
+      clearInterval(checkerRef); checkerRef = null;
+      setTimeout(openModal, 700);
+    }
+  }, 300);
+}
+
+function resetSim() {
+  cancelAll();
+  running = false;
+  score = INITIAL_SCORE;
+  savings = INITIAL_SAVINGS;
+  txnCount = 0;
+  interventionFired = false;
+  interventionDone = false;
+
+  document.getElementById('btn-start').disabled = false;
+  document.getElementById('status-dot').classList.remove('live');
+  document.getElementById('status-text').textContent = 'Simulation not started';
+  document.getElementById('txn-count-badge').textContent = '0 events';
+  document.getElementById('savings-val').textContent = '₹30,000';
+  document.getElementById('savings-val').className = '';
+
+  document.getElementById('txn-feed').innerHTML = `
+    <div class="txn-empty-state">
+      <div class="txn-empty-icon"><svg class="icon" width="20" height="20"><use href="#ic-activity"/></svg></div>
+      <div>Click <strong>Start Simulation</strong> to watch live transactions appear</div>
+    </div>`;
+
+  document.getElementById('risk-log').innerHTML = '<div class="risk-log-empty">Risk change events will appear here</div>';
+  document.getElementById('explain-grid').innerHTML = `
+    <div class="explain-empty">
+      <div class="explain-empty-icon"><svg class="icon" width="20" height="20"><use href="#ic-eye"/></svg></div>
+      <div>No risk factors identified yet — start the simulation to see explanations</div>
+    </div>`;
+
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.getElementById('modal-main-content').style.display = 'block';
+  document.getElementById('modal-success-content').style.display = 'none';
+
+  setScoreDisplay(INITIAL_SCORE, false);
+}
+
+/* ─── ADD TRANSACTION ─── */
+function txn(iconId, name, detail, type, amount, pillType, pillText) {
+  const feed = document.getElementById('txn-feed');
+  const empty = feed.querySelector('.txn-empty-state');
+  if (empty) empty.remove();
+
+  txnCount++;
+  document.getElementById('txn-count-badge').textContent = txnCount + ' events';
+
+  const ts = new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  const el = document.createElement('div');
+  el.className = 'txn-item';
+  el.innerHTML = `
+    <div class="txn-icon-wrap ${type}">
+      <svg class="icon" width="15" height="15"><use href="#${iconId}"/></svg>
+    </div>
+    <div class="txn-body">
+      <div class="txn-name">${name}</div>
+      <div class="txn-sub">${detail} · ${ts}</div>
+    </div>
+    <div class="txn-right">
+      <div class="txn-amount ${type}">${amount}</div>
+      <span class="txn-pill ${pillType}">${pillText}</span>
+    </div>`;
+  feed.insertBefore(el, feed.firstChild);
+}
+
+/* ─── CHANGE RISK ─── */
+function delta(change, evtName, reason, colour, iconId) {
+  score = Math.max(0, Math.min(100, score + change));
+  setScoreDisplay(score, true);
+
+  // risk log
+  const log = document.getElementById('risk-log');
+  const empty = log.querySelector('.risk-log-empty');
+  if (empty) empty.remove();
+
+  const row = document.createElement('div');
+  row.className = 'risk-event-row';
+  const dir = change > 0 ? 'up' : 'dn';
+  const ic  = change > 0 ? 'ic-trending-up' : 'ic-trending-down';
+  row.innerHTML = `
+    <div class="risk-event-icon ${dir}">
+      <svg class="icon" width="12" height="12"><use href="#${ic}"/></svg>
+    </div>
+    <div class="risk-event-name">${evtName}</div>
+    <div class="risk-event-delta ${dir}">${change > 0 ? '+' : ''}${change}</div>`;
+  log.insertBefore(row, log.firstChild);
+  while (log.children.length > 5) log.removeChild(log.lastChild);
+
+  // explainability panel
+  const grid = document.getElementById('explain-grid');
+  const emp = grid.querySelector('.explain-empty');
+  if (emp) emp.remove();
+
+  const col = change > 0 ? (change >= 20 ? 'red' : 'amber') : 'green';
+  const eic = change > 0 ? (change >= 20 ? 'ic-alert-triangle' : 'ic-trending-up') : 'ic-check-circle';
+  const lbl = change > 0 ? (change >= 20 ? 'High Risk Signal' : 'Elevated Signal') : 'Risk Reducing';
+
+  const item = document.createElement('div');
+  item.className = 'explain-item';
+  item.innerHTML = `
+    <div class="explain-icon ${col}">
+      <svg class="icon" width="14" height="14"><use href="#${eic}"/></svg>
+    </div>
+    <div class="explain-body">
+      <div class="explain-label">${lbl}</div>
+      <div class="explain-text">${reason}</div>
+    </div>`;
+  grid.insertBefore(item, grid.firstChild);
+  while (grid.children.length > 6) grid.removeChild(grid.lastChild);
+}
+
+/* ─── SCORE DISPLAY (single source of truth) ─── */
+// animate=false snaps immediately (used on reset/start to avoid stale animation RAF)
+let _animFrame = null;
+function setScoreDisplay(to, animate) {
+  const core   = document.getElementById('risk-core');
+  const numInt = document.getElementById('score-int');   // just the integer span
+  const lvlEl  = document.getElementById('risk-level');
+  const dscEl  = document.getElementById('risk-desc');
+  const bar    = document.getElementById('risk-bar');
+  const badge  = document.getElementById('risk-badge');
+
+  // Cancel any in-flight animation
+  if (_animFrame) { cancelAnimationFrame(_animFrame); _animFrame = null; }
+
+  const from = parseInt(numInt.textContent) || 0;
+
+  if (!animate || Math.abs(to - from) === 0) {
+    numInt.textContent = to;
+  } else {
+    const start = performance.now();
+    const dur = 700;
+    function step(now) {
+      const p = Math.min((now - start) / dur, 1);
+      numInt.textContent = Math.round(from + (to - from) * (1 - Math.pow(1 - p, 3)));
+      if (p < 1) { _animFrame = requestAnimationFrame(step); }
+      else { _animFrame = null; numInt.textContent = to; }
+    }
+    _animFrame = requestAnimationFrame(step);
+  }
+
+  bar.style.width = to + '%';
+  core.className = 'risk-core';
+
+  if (to < 40) {
+    core.classList.add('rs-low');
+    lvlEl.textContent = 'Stress Level: Low';
+    dscEl.textContent = 'No immediate concerns — monitoring continues';
+    badge.textContent = 'LOW';
+    badge.style.background = 'rgba(16,185,129,.1)';
+    badge.style.color = 'var(--green)';
+  } else if (to < 70) {
+    core.classList.add('rs-med');
+    lvlEl.textContent = 'Stress Level: Elevated';
+    dscEl.textContent = 'Watch closely — stress signals present';
+    badge.textContent = 'ELEVATED';
+    badge.style.background = 'rgba(245,158,11,.1)';
+    badge.style.color = 'var(--amber)';
+  } else {
+    core.classList.add('rs-high');
+    lvlEl.textContent = 'Stress Level: HIGH';
+    dscEl.textContent = 'Intervention recommended immediately';
+    badge.textContent = 'HIGH RISK';
+    badge.style.background = 'rgba(239,68,68,.1)';
+    badge.style.color = 'var(--red)';
+  }
+}
+
+function setSavings(val) {
+  savings = Math.max(0, val);
+  const el = document.getElementById('savings-val');
+  el.textContent = '₹' + Math.round(savings).toLocaleString('en-IN');
+  el.className = savings < 25000 ? 'savings-dropping' : 'savings-ok';
+}
+
+/* ─── MODAL ─── */
+function openModal() {
+  document.getElementById('modal-score-val').textContent = score;
+  document.getElementById('modal-overlay').classList.add('open');
+}
+
+function doIntervention(actionText, _icon) {
+  document.getElementById('modal-main-content').style.display = 'none';
+  const sc = document.getElementById('modal-success-content');
+  sc.style.display = 'flex';
+  document.getElementById('modal-success-action-text').textContent = actionText;
+  interventionDone = true;
+
+  setTimeout(() => {
+    document.getElementById('modal-overlay').classList.remove('open');
+    delta(-20, 'Intervention applied', 'Bank proactively reached out and offered support — immediate financial pressure reduced, risk stabilising.', 'green', 'ic-check-circle');
+    txn('ic-send','Prevenza AI Intervention','Proactive support offer sent to customer','positive','Sent','safe','Intervention');
+    setTimeout(() => {
+      if (!running) return; // guard against reset during post-intervention delay
+      delta(-10, 'Customer responded positively', 'Customer acknowledged the offer and confirmed they will meet the EMI — risk trend reversing.', 'green', 'ic-check-circle');
+      // re-enable start button so user can replay
+      running = false;
+      document.getElementById('btn-start').disabled = false;
+      document.getElementById('status-dot').classList.remove('live');
+      document.getElementById('status-text').textContent = 'Simulation complete — click Start to replay';
+    }, 3000);
+  }, 2200);
+}
+
+/* ─────────────────────────────
+   PAGE 3 — TREND CHART
+───────────────────────────── */
+function buildChart() {
+  const labels = Array.from({ length: 30 }, (_, i) => `D${i + 1}`);
+  const data   = [
+    12,14,15,16,18,22,26,30,35,38,42,48,55,60,66,72,78,
+    68,60,52,46,40,35,30,26,22,19,18,17,16
+  ];
+
+  // colour each point
+  const pointColors = data.map((v, i) => {
+    if (i >= 17) return 'rgba(16,185,129,1)';
+    if (v >= 70)  return 'rgba(239,68,68,1)';
+    if (v >= 40)  return 'rgba(245,158,11,1)';
+    return 'rgba(26,87,232,1)';
+  });
+
+  const bgPlugin = {
+    id: 'bgZones',
+    beforeDraw(chart) {
+      const { ctx, chartArea, scales } = chart;
+      if (!chartArea) return;
+      const x17 = scales.x.getPixelForValue(16);
+      ctx.save();
+      ctx.fillStyle = 'rgba(239,68,68,.04)';
+      ctx.fillRect(chartArea.left, chartArea.top, x17 - chartArea.left, chartArea.bottom - chartArea.top);
+      ctx.fillStyle = 'rgba(16,185,129,.04)';
+      ctx.fillRect(x17, chartArea.top, chartArea.right - x17, chartArea.bottom - chartArea.top);
+      // intervention marker
+      ctx.strokeStyle = 'rgba(16,185,129,.5)';
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([4, 3]);
+      ctx.beginPath();
+      ctx.moveTo(x17, chartArea.top);
+      ctx.lineTo(x17, chartArea.bottom);
+      ctx.stroke();
+      ctx.restore();
+    }
+  };
+
+  new Chart(document.getElementById('trendChart'), {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        {
+          label: 'Risk Score',
+          data,
+          borderColor: '#1a57e8',
+          backgroundColor(ctx) {
+            const gradient = ctx.chart.ctx.createLinearGradient(0, 0, 0, 320);
+            gradient.addColorStop(0, 'rgba(26,87,232,.18)');
+            gradient.addColorStop(1, 'rgba(26,87,232,.01)');
+            return gradient;
+          },
+          fill: true,
+          borderWidth: 2.5,
+          tension: .42,
+          pointRadius: (ctx) => {
+            const i = ctx.dataIndex;
+            return i === 16 ? 9 : (i === 0 || i === 29 ? 6 : 4);
+          },
+          pointHoverRadius: 8,
+          pointBackgroundColor: pointColors,
+          pointBorderColor: '#fff',
+          pointBorderWidth: 2,
+        },
+        {
+          label: 'Alert Threshold (70)',
+          data: Array(30).fill(70),
+          borderColor: 'rgba(239,68,68,.55)',
+          borderDash: [6, 4],
+          borderWidth: 1.5,
+          fill: false,
+          pointRadius: 0,
+          tension: 0,
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: 'rgba(7,15,36,.92)',
+          titleFont: { family: 'JetBrains Mono', size: 11 },
+          bodyFont:  { family: 'Sora', size: 12 },
+          padding: 12,
+          cornerRadius: 8,
+          callbacks: {
+            label(ctx) {
+              if (ctx.datasetIndex !== 0) return null;
+              const v = ctx.parsed.y;
+              const st = v >= 70 ? '🔴 HIGH' : v >= 40 ? '🟡 Elevated' : '🟢 Low';
+              return ` Risk: ${v}/100  (${st})`;
+            },
+            afterLabel(ctx) {
+              if (ctx.datasetIndex === 0 && ctx.dataIndex === 16) return ' ← Intervention triggered';
+              return null;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { color: 'rgba(0,0,0,.04)' },
+          ticks: {
+            font: { family: 'JetBrains Mono', size: 10 },
+            color: '#9aaac5',
+            callback: (v, i) => (i % 5 === 0 ? `D${i + 1}` : null)
+          }
+        },
+        y: {
+          min: 0, max: 100,
+          grid: { color: 'rgba(0,0,0,.04)' },
+          ticks: {
+            font: { family: 'JetBrains Mono', size: 10 },
+            color: '#9aaac5'
+          }
+        }
+      }
+    },
+    plugins: [bgPlugin]
+  });
+}
+
+/* init */
+setScoreDisplay(INITIAL_SCORE, false);
+</script>
+</body>
+</html>
